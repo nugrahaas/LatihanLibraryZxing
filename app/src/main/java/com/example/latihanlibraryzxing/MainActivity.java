@@ -52,14 +52,12 @@ public class MainActivity extends AppCompatActivity {
             bitMatrix = new MultiFormatWriter().encode(
                     Value,
 
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
-                    QRcodeWidth, QRcodeWidth, null
+                    BarcodeFormat.DATA_MATRIX.QR_CODE, QRcodeWidth, QRcodeWidth, null
             );
         } catch (IllegalArgumentException Illegalargumentexception) {
             return null;
         }
         int bitMatrixWidth = bitMatrix.getWidth();
-
         int bitMatrixHeight = bitMatrix.getHeight();
         int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
         for (int y = 0; y < bitMatrixHeight; y++) {
@@ -69,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         getResources().getColor(R.color.CodeBlackColor):getResources().getColor(R.color.CodeWhiteColor);
             }
         }
-        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight,
-                Bitmap.Config.ARGB_4444);
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
     }
